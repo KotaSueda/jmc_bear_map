@@ -357,7 +357,14 @@
                     var year=parseInt(cols[idx['year']]),month=parseInt(cols[idx['month']]);
                     var day=parseInt(cols[idx['day']]),doy=parseInt(cols[idx['doy']]);
                     var hour=parseInt(cols[idx['hour']]);
-                    var condition=cols[idx['sighting_condition']]||'不明';
+                    var typeId = cols[idx['info_type_id']];
+                    var typeMapping = {
+                        '1': '目撃',
+                        '2': '人身被害',
+                        '3': '痕跡(食害)',
+                        '4': '痕跡(その他)'
+                    };
+                    var condition = typeMapping[typeId] || '不明';
                     var address=cols[idx['address']]||'',municipality=cols[idx['municipality_name']]||'';
                     var remarks=cols[idx['remarks']]||'',headcount=cols[idx['headcount']]||'';
                     if (isNaN(doy)) doy=calcDoy(month,day);
